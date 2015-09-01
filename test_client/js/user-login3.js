@@ -18,7 +18,10 @@
      $updateBtn = $("#update-submit");
      $ugameBtn  = $("#ugame-submit");
 
-     var server_url = "http://localhost:12315"
+     //var server_url = "http://localhost:12315"
+     var server_url = "http://sgtest.bergur.biz";
+
+     $("#user-index-link").attr("href", server_url);
 
      var url1      = window.location.href;
      //location = window.location.href;
@@ -57,6 +60,7 @@
         var url = server_url + "/user/?username="+username;
         window.location.href = url;
       }
+
 
       function __onUpdateBannerLinkClicked(event){
         $('.signup-ctrls').hide();
@@ -130,7 +134,7 @@
         });
 
         $.ajax({
-            url: 'http://localhost:12315/auth/login',
+            url: server_url+'/auth/login',
             type: 'POST',
             contentType: 'application/json',
             data: data,
@@ -185,7 +189,7 @@
         });
 
         $.ajax({
-            url: 'http://localhost:12315/state_update',
+            url: server_url+'/state_update',
             type: 'POST',
             contentType: 'application/json',
             xhrFields: {
@@ -216,7 +220,7 @@
         jsn = JSON.stringify({'email': $form.find('div.password-reset-ctrls [name=email]').val()});
 
         $.ajax({
-            url: 'http://localhost:12315/auth/openid_reset',
+            url: server_url+'/auth/openid_reset',
             type: 'POST',
             contentType: 'application/json',
             data: jsn,
@@ -248,7 +252,7 @@
 
         //console.log(data)
         $.ajax({
-            url: 'http://localhost:12315/auth/login',
+            url: server_url+'/auth/login',
             type: 'POST',
             contentType: 'application/json',
             xhrFields: {
@@ -259,7 +263,7 @@
             success: function(data){
                 console.log(data);
                 console.log("device control succeeded");
-                if(String(data).length >= 3){
+                if(String(data).length >= 15){
                 __onSignupFailed(data);
                 }
                 else {
