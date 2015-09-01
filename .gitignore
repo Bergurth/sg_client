@@ -3,6 +3,9 @@ bin/
 lib/
 pid
 
+
+test_client/js/oldStuff/
+
 app.py
 
 autostart.cgi~
