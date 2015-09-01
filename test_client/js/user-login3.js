@@ -46,6 +46,14 @@
           }
       }
 
+      function __onPasswordResetLinkClicked(event) {
+          event.preventDefault();
+
+          this.$('.signin-ctrls, .signup-ctrls').hide();
+          this.$('.password-reset-ctrls').fadeIn()
+              .find('[name=email]').focus();
+      }
+
       function __onSignupLinkClicked(event) {
           event.preventDefault();
 
@@ -71,6 +79,7 @@
       }
 
     function submitAsSignUp($form) {
+        $('.signup-ctrls .server-message strong').text("");
         data = JSON.stringify({
             'email'    : $form.find("div.signup-ctrls [name=email]").val(),
             'username' : $form.find("div.signup-ctrls [name=username]").val(),
@@ -91,15 +100,29 @@
             success: function(data){
                 console.log(data);
                 console.log("device control succeeded");
+                if(String(data).length >= 3){
+                __onSignupFailed(data);
+                }
             },
-            error: function(){
+            error: function(data){
                 console.log(data);
                 console.log("Device control failed");
+                __onSignupFailed(data);
             },
             //processData: false,
             // origin : chrome-extention://mkhojklkhkdaghjjfdnphfphiaiohkef
         });
     }
+
+
+    function __onSignupFailed(errors) {
+           var $signupCtrls = $('.signup-ctrls');
+           var errorstr = String(errors);
+
+           $('.signup-ctrls .server-message strong').text("");
+           $('.signup-ctrls .server-message strong').text(errorstr);
+
+       }
 
      function submitAsUpdate($form) {
         console.log("inside submit as update");
@@ -211,13 +234,7 @@
       }
 
 
-       function __onPasswordResetLinkClicked(event) {
-          event.preventDefault();
 
-          this.$('.signin-ctrls, .signup-ctrls').hide();
-          this.$('.password-reset-ctrls').fadeIn()
-              .find('[name=email]').focus();
-      }
 
 
       /*
