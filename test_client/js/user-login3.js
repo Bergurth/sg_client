@@ -148,6 +148,8 @@
                 else {
                     $("#username-button").text($form.find("div.signup-ctrls [name=username]").val());
                     $("#auth-form-modal").modal('hide');
+                    var u_info_url = server_url + "/user/?username="+$form.find("div.signup-ctrls [name=username]").val();
+                    $("#user-info-link").attr("href", u_info_url);
                 }
             },
             error: function(data){
@@ -263,6 +265,8 @@
                 else {
                     $("#username-button").text($form.find("div.signin-ctrls [name=username]").val());
                     $("#auth-form-modal").modal('hide');
+                    var u_info_url = server_url + "/user/?username="+$form.find("div.signin-ctrls [name=username]").val();
+                    $("#user-info-link").attr("href", u_info_url);
                 }
             },
             error: function(){
