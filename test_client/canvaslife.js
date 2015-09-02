@@ -14,6 +14,14 @@
  * limitations under the License.
  */
 
+/*
+*    NOTICE:
+*
+*        This version of canvaslife.js by Julian Pulgarin has been modified, in 
+*    order to save states using the sg_service API.    
+*
+*/
+
 /*jslint plusplus:true, sloppy:true */
 /*globals $, life, setInterval, clearInterval */
 
