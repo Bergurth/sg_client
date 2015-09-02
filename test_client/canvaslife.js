@@ -211,6 +211,7 @@ var life = (function () {
     }
 
     function toggleLife() {
+        console.log(life.prev);
         if (!alive) {
             alive = true;
             timeout = setInterval(life.nextGen, this.speed);
@@ -226,6 +227,104 @@ var life = (function () {
         return jsn;
 
     }
+
+    function save_state() {
+        alive = false;
+        clearInterval(timeout);
+
+        var jsn1 = JSON.stringify(life.prev);
+
+        jsn = JSON.stringify({
+          'username' : "fred",
+          'gamename': "gol",
+          'newstate': jsn1
+        });
+
+        if (currentUname.length >= 1){
+
+            $.ajax({
+                url: server_url+'/state_update',
+                type: 'POST',
+                contentType: 'application/json',
+                xhrFields: {
+                    withCredentials: true
+                },
+                data: jsn,
+                //headers:{"Origin" : "chrome-extention://mkhojklkhkdaghjjfdnphfphiaiohkef"},
+                success: function(data){
+                    console.log(data);
+                    console.log("device control succeeded");
+                },
+                error: function(){
+                //console.log(data);
+                    console.log("Device control failed");
+                },
+            });
+        }
+        else {
+            alert("not logged in.");
+        }
+    }
+
+    function load_state() {
+        console.log("load state hittin");
+        alive = false;
+        clearInterval(timeout);
+        if (currentUname.length >= 1){
+        uget_url = server_url+"/user/?username="+currentUname;
+
+        $.ajax({
+                url: uget_url,
+                type: 'GET',
+                contentType: 'application/json',
+                xhrFields: {
+                    withCredentials: true
+                },
+
+                //headers:{"Origin" : "chrome-extention://mkhojklkhkdaghjjfdnphfphiaiohkef"},
+                success: function(data){
+
+                    data2 = data.substr(1, data.length - 2);
+                    //console.log(data2);
+                    obj = JSON.parse(data2);
+
+                    // trying to put in the new state, --- not quite working yet..
+                    game_state_json = obj.savedGames.gol.state;
+                    //console.log(game_state_json);
+                    //gm_state = game_state_json.substr(1, game_state_json.length - 2);
+                    //var state = var json = JSON.parse("[" + value + "]");
+                    var state = JSON.parse(game_state_json);
+                    console.log(state);
+                    life.prev = state;
+                    //var arr = $.map(game_state_json, function(el) { return el; });
+
+                    //life.prev = arr;
+                    console.log("device control succeeded");
+                },
+                error: function(){
+                //console.log(data);
+                    console.log("Device control failed");
+                },
+            });
+
+
+
+        /*
+        $.get( url, function( data ) {
+            console.log( data );
+            alert( "Load was performed." );
+        })
+
+
+        user_info = $.get(url);
+        console.log(user_info);
+        */
+        }
+        else {
+            alert("not logged in.");
+        }
+    }
+
 
 
     // Parses files in Run Length Encoded Format
@@ -347,6 +446,8 @@ var life = (function () {
         clear: clear,
         changeSpeed: changeSpeed,
         loadPattern: loadPattern,
-        jsonStringify: jsonStringify
+        jsonStringify: jsonStringify,
+        save_state:    save_state,
+        load_state:  load_state
     };
 }());

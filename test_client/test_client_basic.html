@@ -87,8 +87,10 @@
 
 
 
-    <h1> Game of Liffe </h1>
+    <h1> Game of Life </h1>
     <button type="button" class="btn btn-success" onclick="life.toggleLife();"> <span class="glyphicon glyphicon-tower"></span> start life </button>
+    <button type="button" class="btn btn-success" onclick="life.save_state();"> <span class="glyphicon glyphicon-cloud-upload"></span> save state </button>
+
 <div class="row">
 <canvas id="gol-canvas" height="300px" width="400">
 
@@ -96,6 +98,8 @@
 
 </canvas>
 </div>
+<button type="button" class="btn btn-success" onclick="life.load_state();"> <span class="glyphicon glyphicon-cloud-download"></span> load state </button>
+
 <script type="text/javascript" src="canvaslife.js"></script>
 <script type="text/javascript">
     $('document').ready(function() {
@@ -299,7 +303,7 @@
 
 
 <script src="js/user-login.js"></script>
--->
+
 
 
  </body>

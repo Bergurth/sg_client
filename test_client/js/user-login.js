@@ -21,6 +21,8 @@
      //var server_url = "http://localhost:12315"
      var server_url = "http://sgtest.bergur.biz";
 
+     var currentUname = "";
+
      $("#user-index-link").attr("href", server_url);
 
      var url1      = window.location.href;
@@ -268,6 +270,7 @@
                 }
                 else {
                     $("#username-button").text($form.find("div.signin-ctrls [name=username]").val());
+                    currentUname = $form.find("div.signin-ctrls [name=username]").val();
                     $("#auth-form-modal").modal('hide');
                     var u_info_url = server_url + "/user/?username="+$form.find("div.signin-ctrls [name=username]").val();
                     $("#user-info-link").attr("href", u_info_url);
