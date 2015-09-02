@@ -80,6 +80,32 @@
 
         </div>
       </div>
+
+
+
+
+
+
+
+    <h1> Game of Liffe </h1>
+    <button type="button" class="btn btn-success" onclick="life.toggleLife();"> <span class="glyphicon glyphicon-tower"></span> start life </button>
+<div class="row">
+<canvas id="gol-canvas" height="300px" width="400">
+
+
+
+</canvas>
+</div>
+<script type="text/javascript" src="canvaslife.js"></script>
+<script type="text/javascript">
+    $('document').ready(function() {
+        life.initUniverse('#gol-canvas');
+    });
+    </script>
+
+
+
+
       <!--
     <footer class="mg-footer" role="contentinfo">
       <div class="container">
