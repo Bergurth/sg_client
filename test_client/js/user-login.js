@@ -21,7 +21,50 @@
      //var server_url = "http://localhost:12315"
      var server_url = "http://sgtest.bergur.biz";
 
+
+
      var currentUname = "";
+
+     //alert(server_url+"/auth/username");
+  
+     $(document).ready(function() { 
+
+    
+
+        $.ajax({
+                url: server_url+"/auth/username",
+                type: 'GET',
+                contentType: 'application/json',
+                xhrFields: {
+                    withCredentials: true
+                },
+                 success: function(data){
+
+                  if(data.length >= 2){
+                  currentUname = data;
+                  $("#username-button").text(currentUname);
+                  }
+                },
+                error: function(){
+                //console.log(data);
+                    console.log("Device control failed");
+                },
+
+       });
+
+
+      });
+
+    
+
+
+      
+     //try {
+    // Something that throws exception
+    
+    //}
+    //catch (e) {}
+    
 
      $("#user-index-link").attr("href", server_url);
 
@@ -153,6 +196,7 @@
                 }
                 else {
                     $("#username-button").text($form.find("div.signup-ctrls [name=username]").val());
+                    currentUname = $form.find("div.signup-ctrls [name=username]").val();
                     $("#auth-form-modal").modal('hide');
                     var u_info_url = server_url + "/user/?username="+$form.find("div.signup-ctrls [name=username]").val();
                     $("#user-info-link").attr("href", u_info_url);
