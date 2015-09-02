@@ -25,7 +25,7 @@
 
      var currentUname = "";
 
-     //alert(server_url+"/auth/username");
+   
   
      $(document).ready(function() { 
 
