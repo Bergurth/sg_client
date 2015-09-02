@@ -337,11 +337,13 @@ var life = (function () {
                         graphics.ctx.fillRect(0, y * graphics.cellSize, life.xCells * graphics.cellSize, 1);
                     }
                     graphics.ctx.fillRect(0, life.yCells * graphics.cellSize, life.xCells * graphics.cellSize, 1);
+                    /*
                     $(graphics.canvasSelector).mousedown(graphics.handleMouse);
+                    
                     $('body').mouseup(function (e) {
                         $(graphics.canvasSelector).unbind('mousemove');
                     });
-
+                    */
                     graphics.paint();
 
                     //life.initUniverse(graphics.canvasSelector);
