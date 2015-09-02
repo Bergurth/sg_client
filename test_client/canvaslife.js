@@ -235,7 +235,7 @@ var life = (function () {
         var jsn1 = JSON.stringify(life.prev);
 
         jsn = JSON.stringify({
-          'username' : "fred",
+          'username' : currentUname,
           'gamename': "gol",
           'newstate': jsn1
         });
