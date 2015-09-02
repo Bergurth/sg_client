@@ -258,7 +258,7 @@ var life = (function () {
                     withCredentials: true
                 },
                 data: jsn,
-                //headers:{"Origin" : "chrome-extention://mkhojklkhkdaghjjfdnphfphiaiohkef"},
+                
                 success: function(data){
                     console.log(data);
                     console.log("device control succeeded");
@@ -303,9 +303,48 @@ var life = (function () {
                     //var state = var json = JSON.parse("[" + value + "]");
                     var state = JSON.parse(game_state_json);
                     console.log(state);
-                    life.prev = state;
+                    
                     //var arr = $.map(game_state_json, function(el) { return el; });
 
+                    // try at fix
+                    //life.initUniverse(graphics.canvasSelector);
+                    //$(graphics.canvasSelector).unbind('mousedown');
+                    //life.initUniverse(graphics.canvasSelector);
+                    //life.clear();
+                    //life.prev = state;
+
+                    //graphics.paint();
+
+
+                    graphics.initCanvas(graphics.canvasSelector);
+                    life.xCells = Math.floor((graphics.canvas.width - 1) / graphics.cellSize);
+                    life.yCells = Math.floor((graphics.canvas.height - 1) / graphics.cellSize);
+                    graphics.ctx.fillStyle = graphics.offColour;
+                    graphics.ctx.fillRect(0, 0, life.xCells * graphics.cellSize, life.yCells * graphics.cellSize);
+                    // below deletion, gets rid of grid look.
+                    //graphics.ctx.fillStyle = graphics.gridColour;
+
+                    for (x = 0; x < life.xCells; x++) {
+                        life.prev[x] = state[x];
+                        life.next[x] = [];
+                        graphics.ctx.fillRect(x * graphics.cellSize, 0, 1, life.yCells * graphics.cellSize);
+                        for (y = 0; y < life.yCells; y++) {
+                            life.prev[x][y] = state[x][y];
+                        }
+                    }
+                    graphics.ctx.fillRect(life.xCells * graphics.cellSize, 0, 1, life.yCells * graphics.cellSize);
+                    for (y = 0; y < life.yCells; y++) {
+                        graphics.ctx.fillRect(0, y * graphics.cellSize, life.xCells * graphics.cellSize, 1);
+                    }
+                    graphics.ctx.fillRect(0, life.yCells * graphics.cellSize, life.xCells * graphics.cellSize, 1);
+                    $(graphics.canvasSelector).mousedown(graphics.handleMouse);
+                    $('body').mouseup(function (e) {
+                        $(graphics.canvasSelector).unbind('mousemove');
+                    });
+
+                    graphics.paint();
+
+                    //life.initUniverse(graphics.canvasSelector);
                     //life.prev = arr;
                     console.log("device control succeeded");
                 },
