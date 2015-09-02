@@ -43,6 +43,8 @@
                   if(data.length >= 2){
                   currentUname = data;
                   $("#username-button").text(currentUname);
+                  var u_info_url1 = server_url + "/user/?username="+currentUname
+                  $("#user-info-link").attr("href", u_info_url1);
                   }
                 },
                 error: function(){
