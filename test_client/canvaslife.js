@@ -240,82 +240,16 @@ var life = (function () {
         alive = false;
         clearInterval(timeout);
 
-        var jsn1 = JSON.stringify(life.prev);
+        sg_game.save_state(life.prev, sg_game.gamename);
 
-        jsn = JSON.stringify({
-          'username' : currentUname,
-          'gamename': "gol",
-          'newstate': jsn1
-        });
-
-        if (currentUname.length >= 1){
-
-            $.ajax({
-                url: server_url+'/state_update',
-                type: 'POST',
-                contentType: 'application/json',
-                xhrFields: {
-                    withCredentials: true
-                },
-                data: jsn,
-                
-                success: function(data){
-                    console.log(data);
-                    console.log("device control succeeded");
-                },
-                error: function(){
-                //console.log(data);
-                    console.log("Device control failed");
-                },
-            });
-        }
-        else {
-            alert("not logged in.");
-        }
     }
 
     function load_state() {
         console.log("load state hittin");
         alive = false;
         clearInterval(timeout);
-        if (currentUname.length >= 1){
-        uget_url = server_url+"/user/?username="+currentUname;
-        
 
-        $.ajax({
-                url: uget_url,
-                type: 'GET',
-                contentType: 'application/json',
-                xhrFields: {
-                    withCredentials: true
-                },
-
-                //headers:{"Origin" : "chrome-extention://mkhojklkhkdaghjjfdnphfphiaiohkef"},
-                success: function(data){
-
-                    data2 = data.substr(1, data.length - 2);
-                    //console.log(data2);
-                    obj = JSON.parse(data2);
-
-                    // trying to put in the new state, --- not quite working yet..
-                    game_state_json = obj.savedGames.gol.state;
-                    //console.log(game_state_json);
-                    //gm_state = game_state_json.substr(1, game_state_json.length - 2);
-                    //var state = var json = JSON.parse("[" + value + "]");
-                    var state = JSON.parse(game_state_json);
-                    console.log(state);
-                    
-                    //var arr = $.map(game_state_json, function(el) { return el; });
-
-                    // try at fix
-                    //life.initUniverse(graphics.canvasSelector);
-                    //$(graphics.canvasSelector).unbind('mousedown');
-                    //life.initUniverse(graphics.canvasSelector);
-                    //life.clear();
-                    //life.prev = state;
-
-                    //graphics.paint();
-
+            function fill_in_state(state) {
 
                     graphics.initCanvas(graphics.canvasSelector);
                     life.xCells = Math.floor((graphics.canvas.width - 1) / graphics.cellSize);
@@ -347,33 +281,12 @@ var life = (function () {
                     */
                     graphics.paint();
 
-                    //life.initUniverse(graphics.canvasSelector);
-                    //life.prev = arr;
-                    console.log("device control succeeded");
-                },
-                error: function(){
-                //console.log(data);
-                    console.log("Device control failed");
-                },
-            });
+            }
 
+        // sg_game start
+        sg_game.load_state(sg_game.gamename, fill_in_state);
 
-
-        /*
-        $.get( url, function( data ) {
-            console.log( data );
-            alert( "Load was performed." );
-        })
-
-
-        user_info = $.get(url);
-        console.log(user_info);
-        */
         }
-        else {
-            alert("not logged in.");
-        }
-    }
 
 
 

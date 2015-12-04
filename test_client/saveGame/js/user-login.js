@@ -71,9 +71,10 @@
 
      $("#user-index-link").attr("href", server_url);
 
-     var url1      = window.location.href;
+     var url1  = window.location.href;
      //location = window.location.href;
      var source_url = server_url +"/auth/logout?from_page="+url1;
+     //var source_url = logout_url;
      $('#logout_link').attr("href", source_url);
 
 
