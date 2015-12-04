@@ -12,11 +12,7 @@
         <script type="text/javascript" src="js/jquery.hotkeys.js"></script>
         <script type="text/javascript" src="js/key_status.js"></script>
         <link href="css/bootstrap.min.css" rel="stylesheet">
-        <script type="text/javascript" src="js/bootstrap.min.js"></script>
-        <script type="text/javascript" src="js/settings.js"></script>
-
-        <script src="js/underscore-min.js"></script>
-
+   
         <!-- non basic -->
         <!--
         <script src="js/backbone-min.js"></script>
@@ -25,13 +21,49 @@
 
         <script src="js/models/base.js"></script>
       <script src="js/models/user.js"></script>
+  --> 
+
+
+   <!-- for saveGame -->
+    <!--======================================================================================================
+
+                            .___                               .___                   .__               
+          ______ ____     __| _/____ ______   ____   ____    __| _/____   ____   ____ |__| ____   ______
+         /  ___// ___\   / __ |/ __ \\____ \_/ __ \ /    \  / __ |/ __ \ /    \_/ ___\|  |/ __ \ /  ___/
+         \___ \/ /_/  > / /_/ \  ___/|  |_> >  ___/|   |  \/ /_/ \  ___/|   |  \  \___|  \  ___/ \___ \ 
+        /____  >___  /  \____ |\___  >   __/ \___  >___|  /\____ |\___  >___|  /\___  >__|\___  >____  >
+             \/_____/        \/    \/|__|        \/     \/      \/    \/     \/     \/        \/     \/ 
+                    
   -->
+
+    <script type="text/javascript" src="saveGame/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="saveGame/js/settings.js"></script>
+    <script src="saveGame/js/underscore-min.js"></script>
+    
+    <script src="saveGame/js/user-login.js"></script>
+    
+<!--=========================================================================================================== -->
+     <!-- for saveGame -->
+
 
  </head>
  <body>
 
+  <!--
+  ================================================================================================================
 
- <header class="navbar navbar-default navbar-fixed-top" role="navigation">
+                                                                 ___.                 
+                              ______ ____     ____ _____ ___  __ \_ |__ _____ _______ 
+                             /  ___// ___\   /    \\__  \\  \/ /  | __ \\__  \\_  __ \
+                             \___ \/ /_/  > |   |  \/ __ \\   /   | \_\ \/ __ \|  | \/
+                            /____  >___  /  |___|  (____  /\_/    |___  (____  /__|   
+                                 \/_____/        \/     \/            \/     \/       
+
+
+
+-->
+
+<header class="navbar navbar-default navbar-fixed-top" role="navigation">
     <div class="navbar-inner">
       <div class="container">
         <div class="navbar-header">
@@ -75,12 +107,16 @@
       </div>
       </div>
     </header>
+
+
+<!-- ==================================================================================================================
+-->
+
+
       <div class="container">
         <div class="row content">
 
-        </div>
-      </div>
-
+       
 
 
 
@@ -99,35 +135,25 @@
 </canvas>
 </div>
 <button type="button" class="btn btn-success" onclick="life.load_state();"> <span class="glyphicon glyphicon-cloud-download"></span> load state </button>
-
-<script type="text/javascript" src="canvaslife.js"></script>
-<script type="text/javascript">
-    $('document').ready(function() {
-        life.initUniverse('#gol-canvas');
-    });
-    </script>
-
-
-
-
-      <!--
-    <footer class="mg-footer" role="contentinfo">
-      <div class="container">
-        <div class="row footer">
-            <div class="col-md-8">
-              <h3>bls bla</h3>
-                  <p>bla
-                  <br /> help at: hjalp@namskra.is.
-                </p>
-          </div>
-          <div class="col-md-3 pull-right">
-              <img style="height:75px; width:auto;" class="pull-right" src="http://media.menntagatt.is/mgoblin_media/media_entries/2/mrn.png"/>
-          </div>
+ </div>
       </div>
-    </div>
-  </footer>
+
+<!--
+  ================================================================================================================
+
+                                                     
+                                    .__                .__           _____                     
+                      ______ ____   |  |   ____   ____ |__| ____   _/ ____\___________  _____  
+                     /  ___// ___\  |  |  /  _ \ / ___\|  |/    \  \   __\/  _ \_  __ \/     \ 
+                     \___ \/ /_/  > |  |_(  <_> ) /_/  >  |   |  \  |  | (  <_> )  | \/  Y Y  \
+                    /____  >___  /  |____/\____/\___  /|__|___|  /  |__|  \____/|__|  |__|_|  /
+                         \/_____/              /_____/         \/                           \/
+
 -->
-  <div id="auth-form-modal" class="modal fade" role="dialog">
+
+
+
+       <div id="auth-form-modal" class="modal fade" role="dialog">
     <div class="modal-dialog">
        <form class='auth-form'>
       <div class="modal-content">
@@ -299,12 +325,47 @@
     </form>
     </div>
   </div>
+<!--
+  ================================================================================================================
+-->
 
 
 
-<script src="js/user-login.js"></script>
+
+<!--
+  =================================================================================================================
+
+                                     .__          __             .___                     .__        __   
+        ______ ____   _______   ____ |  | _____ _/  |_  ____   __| _/   ______ ___________|__|______/  |_ 
+       /  ___// ___\  \_  __ \_/ __ \|  | \__  \\   __\/ __ \ / __ |   /  ___// ___\_  __ \  \____ \   __\
+       \___ \/ /_/  >  |  | \/\  ___/|  |__/ __ \|  | \  ___// /_/ |   \___ \\  \___|  | \/  |  |_> >  |  
+      /____  >___  /   |__|    \___  >____(____  /__|  \___  >____ |  /____  >\___  >__|  |__|   __/|__|  
+           \/_____/                \/          \/          \/     \/       \/     \/         |__|          
+
+-->
 
 
+<script type="text/javascript" src="saveGame/js/sg_game.js"></script>
+<script type="text/javascript">
+    $('document').ready(function() {
+      // here add uniq name of game inside initSgContext
+        sg_game.initSgContext('gol');
+    });
+    </script>
+
+
+
+
+<!--
+=====================================================================================================================
+  -->
+
+<script type="text/javascript" src="canvaslife.js"></script>
+<script type="text/javascript">
+    $('document').ready(function() {
+        life.initUniverse('#gol-canvas');
+    });
+    </script>
 
  </body>
  </html>

@@ -280,6 +280,7 @@ var life = (function () {
         clearInterval(timeout);
         if (currentUname.length >= 1){
         uget_url = server_url+"/user/?username="+currentUname;
+        
 
         $.ajax({
                 url: uget_url,
