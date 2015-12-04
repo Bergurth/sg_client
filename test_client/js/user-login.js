@@ -19,7 +19,8 @@
      $ugameBtn  = $("#ugame-submit");
 
      //var server_url = "http://localhost:12315"
-     var server_url = "http://sgtest.bergur.biz";
+     //sg_base_url
+     var server_url = "http://" + sg_base_url;
 
 
 
